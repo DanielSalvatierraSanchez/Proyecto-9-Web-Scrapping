@@ -23,49 +23,46 @@ En este proyecto se deberá de realizar un web scrapping de cualquier página, e
 ## Clonación del Proyecto:
 
 ```sh
-git clone https://github.com/DanielSalvatierraSanchez/Proyecto-8-Backend-API-REST-FILES.git
+git clone https://github.com/DanielSalvatierraSanchez/Proyecto-9-Web-Scrapping.git
 ```
 
 - Entrega del .env:
 
 ```
-DB_URL=mongodb+srv://proyect8:<password>@cluster0.myq5qnx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+DB_URL=mongodb+srv://proyecto9:<password>@cluster0.2kwa8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ```
-
-- Middlewares:
-
-> upload (Permite la subida de ciertos tipos de archivos a una carpeta de Cloudinary)
 
 - Dependencias del proyecto:
 
 ```
 npm i -D nodemon
-npm i express mongoose dotenv cloudinary multer multer-storage-cloudinary
+npm i express mongoose dotenv puppeteer
 ```
 
 - Scripts del proyecto:
 
 ```
+npm run scrapper ("node ./src/utils/scrapperLauncher.js")
 npm run start ("node index.js")
 npm run dev ("nodemon index.js")
-npm run seed ("node ./src/utils/seed/seed.js")
 ```
 
-### Endpoints Cake
+### Endpoints Products
 
 | NAME | METHOD | ENDPOINT | BODY | MIDDLEWARE |
 | --- | --- | --- | --- | --- |
-| REGISTER CAKE | POST | /api/v1/cake/register | { **name**, **difficulty**, **firstImg**, secondImg, thirdImg, ingredients } | upload |
-| ALL CAKES | GET | /api/v1/cake | --- |
-| CAKE BY NAME | GET | /api/v1/cake/getBy/:name | { **name** } |
-| UPDATE CAKE | PUT | /api/v1/cake/update/:id | { **cake data** } | upload |
-| DELETE CAKE | DELETE | /api/v1/cake/delete/:id | --- |
-| DELETE INGREDIENT OF CAKE | DELETE | /api/v1/cake/deleteIngredient/:id | { **name** } | --- |
+| CREATE LIST | POST | /api/v1/products/register | --- | --- |
+| ALL PRODUCTS | GET | /api/v1/products | --- | --- |
+| PRODUCTS BY NAME | GET | /api/v1/products/getByName/:name | { **name** } | --- |
+| PRODUCTS BY PRICE | GET | /api/v1/products/getByPrice/:price | { **price** } | --- |
+| UPDATE PRODUCT | PUT | /api/v1/products/update/:id | { **products data** } | --- |
+| DELETE PRODUCT | DELETE | /api/v1/products/delete/:id | --- | --- |
 
-## Resumen de los Endpoints Cake
+## Resumen de los Endpoints Products
 
-##### POST /api/v1/cake/register
-- Para la creación de un Cake se crea un Schema, en el que requerimos 3 campos obligatorios, "name", "difficulty" y "firstImg", también tendremos otros extra que serán "secondImg", "thirdImg" e "ingredients".
+##### POST /api/v1/products/register
+- Para la creación de un listado de products se crea un Schema, en el que requerimos 3 campos obligatorios, "image", "name" y "price".
+Se obtendra un listado de productos mediante la ejecucion del script ``` npm run scrapper ``` el cual obtendra los productos junto con los campos que se requieren en el Schema insertandolos en la BBDD que hemos creado.
 ```
     {      
         name: { type: String, required: true, trim: true },
@@ -77,19 +74,22 @@ npm run seed ("node ./src/utils/seed/seed.js")
     }
 ```
 
-##### GET /api/v1/cake/getBy/:name
--  Para obtener un listado de Cakes por "name" será necesario introducir algún caracter.
+##### GET /api/v1/products/getByName/:name
+-  Para obtener un listado de productss por "name" será necesario introducir algún caracter.
 
-##### GET /api/v1/cake/
+##### GET /api/v1/products/getByPrice/:price
+-  Para obtener un listado de productss por "name" será necesario introducir algún caracter.
+
+##### GET /api/v1/products/
 -  Para obtener un listado de todas las Cakes.
 
-##### PUT /api/v1/cake/update/:id
+##### PUT /api/v1/products/update/:id
 -  Para la actualización de una Cake mediante su ID.
 
-##### DELETE /api/v1/cake/deleteIngredient/:id
+##### DELETE /api/v1/products/deleteIngredient/:id
 -  Para eliminar un Ingredient por su "name" de una Cake mediante su ID.
 
-##### DELETE /api/v1/cake/delete/:id
+##### DELETE /api/v1/products/delete/:id
 -  Para eliminar una Cake por completo mediante su ID.
 
 
