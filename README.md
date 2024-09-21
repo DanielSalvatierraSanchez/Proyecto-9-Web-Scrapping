@@ -52,9 +52,9 @@ npm run dev ("nodemon index.js")
 | NAME | METHOD | ENDPOINT | BODY | MIDDLEWARE |
 | --- | --- | --- | --- | --- |
 | CREATE LIST | POST | /api/v1/products/register | --- | --- |
-| ALL PRODUCTS | GET | /api/v1/products | --- | --- |
 | PRODUCTS BY NAME | GET | /api/v1/products/getByName/:name | { **name** } | --- |
 | PRODUCTS BY PRICE | GET | /api/v1/products/getByPrice/:price | { **price** } | --- |
+| ALL PRODUCTS | GET | /api/v1/products | --- | --- |
 | UPDATE PRODUCT | PUT | /api/v1/products/update/:id | { **products data** } | --- |
 | DELETE PRODUCT | DELETE | /api/v1/products/delete/:id | --- | --- |
 
@@ -62,68 +62,28 @@ npm run dev ("nodemon index.js")
 
 ##### POST /api/v1/products/register
 - Para la creación de un listado de products se crea un Schema, en el que requerimos 3 campos obligatorios, "image", "name" y "price".
-Se obtendra un listado de productos mediante la ejecucion del script ``` npm run scrapper ``` el cual obtendra los productos junto con los campos que se requieren en el Schema insertandolos en la BBDD que hemos creado.
+Se obtendrá un listado de productos mediante la ejecución del script
+``` npm run scrapper ```
+el cuál obtendrá insertará un listado de productos con los campos que se requieren en el Schema dentro de la BBDD que hemos creado.
 ```
-    {      
-        name: { type: String, required: true, trim: true },
-        difficulty: { type: String, required: true, enum: ["Baja", "Media", "Alta"] },
-        firstImg: { type: String, required: true },
-        secondImg: { type: String, required: false },
-        thirdImg: { type: String, required: false },
-        ingredients: [{ type: mongoose.Types.ObjectId, ref: "ingredients"}]
-    }
+{
+    image: { type: String, required: true, trim: true },
+    name: { type: String, required: true, trim: true },
+    price: { type: Number, required: true, trim: true }
+}
 ```
 
 ##### GET /api/v1/products/getByName/:name
--  Para obtener un listado de productss por "name" será necesario introducir algún caracter.
+-  Para obtener un listado de productos por "name" será necesario introducir algún caracter.
 
 ##### GET /api/v1/products/getByPrice/:price
--  Para obtener un listado de productss por "name" será necesario introducir algún caracter.
+-  Para obtener un listado de productos por "price" será necesario introducir algún caracter.
 
 ##### GET /api/v1/products/
--  Para obtener un listado de todas las Cakes.
+-  Para obtener un listado de todas los productos.
 
 ##### PUT /api/v1/products/update/:id
--  Para la actualización de una Cake mediante su ID.
-
-##### DELETE /api/v1/products/deleteIngredient/:id
--  Para eliminar un Ingredient por su "name" de una Cake mediante su ID.
+-  Para la actualización de un producto mediante su ID.
 
 ##### DELETE /api/v1/products/delete/:id
--  Para eliminar una Cake por completo mediante su ID.
-
-
-## Endpoints Ingredient
-
-| NAME | METHOD | ENDPOINT | BODY | MIDDLEWARE |
-| --- | --- | --- | --- | --- |
-| REGISTER INGREDIENT | POST | /api/v1/ingredient/register | { **name**, **quantity**, **units**, **img** } | upload |
-| ALL INGREDIENTS | GET | /api/v1/ingredient | --- |
-| INGREDIENT BY NAME | GET | /api/v1/ingredient/getBy/:name | { **name** } |
-| UPDATE INGREDIENT | PUT | /api/v1/ingredient/update/:id | { **INGREDIENT data** } | upload |
-| DELETE INGREDIENT | DELETE | /api/v1/ingredient/delete/:id | --- |
-
-## Resumen de los Endpoints Ingredient
-
-##### POST /api/v1/ingredient/register
-- Para la creación de un Ingredient se crea un Schema, en el que requerimos 4 campos obligatorios, "name", "quantity", "units" e "img".
-```
-    {
-        name: { type: String, required: true, trim: true },
-        quantity: { type: Number, required: true, min: 1, trim: true },
-        units: { type: String, required: true, enum: ["Gramos", "Mililitros", "Unidad", "Unidades"] },
-        img: { type: String, required: true }
-    }
-```
-
-##### GET /api/v1/ingredient/getBy/:name
--  Para obtener un listado de Ingredients por "name" será necesario introducir algún caracter.
-
-##### GET /api/v1/ingredient/
--  Para obtener un listado de todos los Ingredients.
-
-##### PUT /api/v1/ingredient/update/:id
--  Para la actualización de un Ingredient mediante su ID.
-
-##### DELETE /api/v1/ingredient/delete/:id
--  Para eliminar un Ingredient por completo mediante su ID.
+-  Para eliminar un producto por completo mediante su ID.
