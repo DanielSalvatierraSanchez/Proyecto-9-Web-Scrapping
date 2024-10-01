@@ -98,7 +98,7 @@ const nextPage = async (page, allProducts, retries = 5) => {
 }
 
 const fileOfProducts = (allProducts) => {
-    fs.writeFile('products.json', JSON.stringify(allProducts), () => {
+    fs.writeFile('products.json', JSON.stringify(allProducts, null, 4), () => {
         console.log(`✅ ARCHIVO CREADO CON ${allProducts.length} PRODUCTOS.`)
     })
 }
